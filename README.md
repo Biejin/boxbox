@@ -1,26 +1,27 @@
-# TOMATO / 番茄研究所
+# Tomato Atelier
 
-一个受复古海报、蓝色留白和手绘番茄插画启发的单页视觉网站。
+A tomato-inspired brand landing page with bold poster-inspired composition, large type, motion, and responsive layout.
 
-## 本地预览
+## Local preview
 
-无需安装依赖，在仓库根目录执行：
+From the repository root:
 
 ```bash
 python3 -m http.server 4173
 ```
 
-然后访问 http://localhost:4173
+Then open:
 
-也可以使用 Node：
-
-```bash
-npx serve .
+```text
+http://localhost:4173
 ```
 
-## 交互
+If you use VS Code, you can also open the file directly with Live Server.
 
-- 点击 Hero 区域的番茄触发弹跳与色彩变化
-- 鼠标在“番茄实验室”圆盘上移动，番茄会跟随指针
-- 卡片悬停产生颜色、位移和旋转反馈
-- 响应式移动端布局
+## Included interactions
+
+- Floating motion in the hero scene
+- Pointer-based parallax for tomatoes
+- Hover motion on feature cards
+- Tomato lab dial reacts to cursor movement
+- Responsive mobile layout

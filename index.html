@@ -3,79 +3,868 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#e8342d" />
-  <title>TOMATO / 番茄研究所</title>
+  <title>Tomato Atelier — Brand Landing Page</title>
+  <meta name="description" content="Tomato Atelier brand website with vibrant tomato-inspired visuals and motion." />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-    :root { --red:#ed312b; --red-dark:#b91e29; --green:#214f2e; --blue:#3f66b5; --cream:#f8f0df; --ink:#161713; --line:rgba(22,23,19,.25); }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; color:var(--ink); background:var(--cream); font-family:'Space Grotesk',Arial,sans-serif; overflow-x:hidden; }
-    body:after { content:''; position:fixed; inset:0; pointer-events:none; opacity:.08; z-index:10; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E"); mix-blend-mode:multiply; }
-    .nav { height:76px; display:flex; justify-content:space-between; align-items:center; padding:0 5vw; border-bottom:1.5px solid var(--ink); font-family:'DM Mono',monospace; font-size:12px; letter-spacing:.05em; }
-    .brand { display:flex; align-items:center; gap:13px; font-weight:500; }
-    .dot { width:18px; height:18px; border-radius:50%; background:var(--red); display:inline-block; box-shadow:5px -3px 0 var(--green); }
-    .nav a { color:inherit; text-decoration:none; margin-left:24px; }
-    .nav a:hover { color:var(--red); }
-    .hero { min-height:calc(100vh - 76px); padding:7vh 5vw 5vh; display:grid; grid-template-columns:1.05fr .95fr; gap:4vw; align-items:center; background:var(--cream); }
-    .eyebrow { font-family:'DM Mono',monospace; font-size:12px; color:var(--green); margin-bottom:22px; }
-    h1 { font-size:clamp(76px,13vw,190px); line-height:.78; letter-spacing:-.09em; margin:0; font-weight:700; text-transform:uppercase; }
-    h1 span { display:block; color:var(--red); padding-left:9vw; }
-    .intro { max-width:445px; margin:38px 0 30px; font-size:16px; line-height:1.5; }
-    .cta { display:inline-flex; border:1.5px solid var(--ink); color:var(--ink); text-decoration:none; padding:14px 20px; font-family:'DM Mono',monospace; font-size:12px; transition:.25s; }
-    .cta:hover { background:var(--red); color:white; border-color:var(--red); transform:translate(4px,-4px); box-shadow:5px 5px var(--green); }
-    .hero-art { position:relative; min-height:430px; display:grid; place-items:center; }
-    .poster { position:absolute; width:min(83%,470px); aspect-ratio:1/1.13; background:var(--blue); transform:rotate(3deg); border:2px solid var(--ink); display:grid; place-items:center; overflow:hidden; box-shadow:12px 13px 0 var(--red); }
-    .poster-label { position:absolute; top:20px; left:22px; right:22px; display:flex; justify-content:space-between; font-family:'DM Mono',monospace; color:var(--cream); font-size:10px; z-index:2; }
-    .tomato { width:71%; aspect-ratio:1; border-radius:50% 48% 53% 47%; background:radial-gradient(circle at 35% 28%,#ff6a52 0 8%,transparent 9%), radial-gradient(circle at 50% 58%,#f13931 0 48%,#bf1e2b 100%); position:relative; transform:rotate(-8deg); animation:float 5s ease-in-out infinite; box-shadow:inset -20px -25px 0 rgba(150,21,35,.15); cursor:pointer; }
-    .tomato:before { content:''; position:absolute; width:42%; height:20%; background:var(--green); top:3%; left:31%; clip-path:polygon(50% 0,62% 42%,100% 15%,73% 57%,94% 85%,57% 67%,38% 100%,37% 62%,0 77%,26% 47%,8% 18%,40% 38%); }
-    .tomato:after { content:''; position:absolute; width:9px; height:9px; border-radius:50%; background:#ffae62; left:37%; top:43%; box-shadow:44px 17px #ffae62, 29px 46px #ffae62, -10px 24px #ffae62; opacity:.8; }
-    .orbit { position:absolute; inset:9%; border:1px dashed rgba(248,240,223,.7); border-radius:50%; animation:spin 18s linear infinite; }
-    .orbit i { position:absolute; width:11px; height:11px; background:var(--cream); border-radius:50%; top:4%; left:50%; }
-    .scroll-note { position:absolute; bottom:0; left:0; font-family:'DM Mono',monospace; font-size:11px; writing-mode:vertical-rl; transform:rotate(180deg); }
-    .marquee { overflow:hidden; background:var(--red); color:var(--cream); border-block:1.5px solid var(--ink); white-space:nowrap; font-size:clamp(27px,4vw,58px); font-weight:700; letter-spacing:-.04em; padding:9px 0; }
-    .marquee div { display:inline-block; animation:slide 18s linear infinite; }
-    .section { padding:110px 5vw; border-bottom:1.5px solid var(--ink); }
-    .section-head { display:flex; justify-content:space-between; align-items:end; border-bottom:1.5px solid var(--ink); padding-bottom:18px; margin-bottom:42px; }
-    .section h2 { font-size:clamp(42px,7vw,90px); line-height:.85; letter-spacing:-.07em; margin:0; text-transform:uppercase; }
-    .section-head p { max-width:260px; font-family:'DM Mono',monospace; font-size:11px; line-height:1.5; }
-    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-    .card { min-height:300px; border:1.5px solid var(--ink); padding:21px; position:relative; overflow:hidden; transition:.3s; cursor:pointer; }
-    .card:hover { transform:translateY(-9px) rotate(-1deg); background:var(--red); color:var(--cream); }
-    .card:nth-child(2):hover { background:var(--green); } .card:nth-child(3):hover { background:var(--blue); }
-    .card-num { font-family:'DM Mono',monospace; font-size:12px; }
-    .card h3 { font-size:35px; letter-spacing:-.06em; margin:73px 0 9px; }
-    .card p { max-width:220px; font-size:13px; line-height:1.4; }
-    .mini-tomato { position:absolute; right:-25px; bottom:-35px; width:145px; height:145px; border-radius:50%; background:var(--red); border:1px solid var(--ink); }
-    .card:nth-child(2) .mini-tomato { background:#f2a72e; } .card:nth-child(3) .mini-tomato { background:#6aa53b; }
-    .mini-tomato:before { content:'✦'; color:var(--green); position:absolute; left:51px; top:-7px; font-size:47px; transform:rotate(-20deg); }
-    .lab { background:var(--green); color:var(--cream); display:grid; grid-template-columns:1fr 1fr; gap:7vw; align-items:center; }
-    .lab h2 { color:var(--red); } .lab .section-head { border-color:rgba(248,240,223,.5); }
-    .dial { aspect-ratio:1; max-width:450px; border:1px solid var(--cream); border-radius:50%; display:grid; place-items:center; position:relative; margin:auto; }
-    .dial:before,.dial:after { content:''; position:absolute; background:var(--cream); opacity:.8; } .dial:before { height:1px; width:100%; } .dial:after { width:1px; height:100%; }
-    .dial-tomato { width:49%; aspect-ratio:1; border-radius:50%; background:var(--red); position:relative; box-shadow:inset -14px -16px rgba(100,16,27,.2); animation:pulse 2s infinite alternate; }
-    .dial-tomato:before { content:'✦'; position:absolute; color:var(--green); font-size:52px; left:31%; top:-20%; }
-    .dial-label { position:absolute; font-family:'DM Mono',monospace; font-size:10px; } .dial-label.top{top:8%;}.dial-label.bottom{bottom:8%;}.dial-label.left{left:7%;}.dial-label.right{right:7%;}
-    footer { padding:24px 5vw; display:flex; justify-content:space-between; font:11px 'DM Mono',monospace; }
-    @keyframes float { 0%,100%{transform:rotate(-8deg) translateY(0)} 50%{transform:rotate(-3deg) translateY(-16px)} } @keyframes spin{to{transform:rotate(360deg)}} @keyframes slide{to{transform:translateX(-50%)}} @keyframes pulse{to{transform:scale(1.08)}}
-    @media(max-width:760px){ .nav{padding:0 22px}.nav a{display:none}.hero{padding:60px 22px;display:block}.hero-art{margin-top:60px;min-height:350px}.poster{width:78%}.section{padding:75px 22px}.section-head{display:block}.section-head p{margin-top:22px}.cards{grid-template-columns:1fr}.lab{display:block}.lab .dial{margin-top:50px;width:80%}footer{padding:22px;display:block}footer span:last-child{display:block;margin-top:8px} }
+    @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+    :root {
+      --bg: #f7f0dd;
+      --paper: #f3ead8;
+      --red: #e73d35;
+      --red-dark: #d12d28;
+      --green: #2e7d4d;
+      --green-deep: #1a4f2c;
+      --gold: #f4ba46;
+      --blue: #2d7dcb;
+      --ink: #111111;
+      --muted: rgba(17,17,17,0.72);
+      --card: rgba(255,255,255,0.14);
+      --line: rgba(17,17,17,0.8);
+      --shadow: rgba(17,17,17,0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Noto Sans SC', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.03) 0, transparent 55%);
+      opacity: 0.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1200px, calc(100vw - 48px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(247, 240, 221, 0.78);
+      border-bottom: 2px solid rgba(17,17,17,0.8);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Archivo', sans-serif;
+      letter-spacing: 0.12em;
+    }
+
+    .brand-mark {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff5b45, #e63c32);
+      position: relative;
+      box-shadow: 4px -4px 0 #2e7d4d;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.22s ease;
+    }
+
+    .nav a:hover { color: var(--red); }
+    .nav a:hover::after { transform: scaleX(1); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      padding: 14px 22px;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.24s ease, box-shadow 0.24s ease, background 0.24s ease, color 0.24s ease;
+    }
+
+    .btn:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 6px 6px 0 rgba(17,17,17,0.9);
+      background: var(--red);
+      color: #fff;
+      border-color: var(--red);
+    }
+
+    .hero {
+      position: relative;
+      padding: 72px 0 50px;
+      overflow: hidden;
+    }
+
+    .headline {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .small-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 18px;
+      display: inline-block;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(72px, 11vw, 170px);
+      line-height: 0.82;
+      letter-spacing: -0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 .accent {
+      display: block;
+      color: var(--red);
+      transform: translateX(7vw);
+    }
+
+    .copy {
+      margin: 26px 0 32px;
+      max-width: 470px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .meta-card {
+      padding: 18px 16px;
+      border: 2px solid rgba(17,17,17,0.75);
+      background: rgba(255,255,255,0.08);
+      text-transform: uppercase;
+      font-family: 'Archivo', sans-serif;
+      letter-spacing: 0.06em;
+    }
+
+    .meta-card strong {
+      display: block;
+      font-size: 30px;
+      letter-spacing: -0.05em;
+      margin-bottom: 4px;
+    }
+
+    .hero-art {
+      position: relative;
+      height: 640px;
+      display: grid;
+      place-items: center;
+    }
+
+    .art-scene {
+      position: relative;
+      width: min(90%, 620px);
+      aspect-ratio: 1.02;
+      border: 2px solid rgba(17,17,17,0.9);
+      background: linear-gradient(180deg, #2d7dcb 0%, #2d7dcb 100%);
+      overflow: hidden;
+      box-shadow: 18px 18px 0 rgba(17,17,17,0.18);
+      transform: rotate(-2deg);
+    }
+
+    .art-scene .leaf {
+      position: absolute;
+      width: 40px;
+      height: 130px;
+      background: linear-gradient(180deg, #4b9d60, #2b7242);
+      border-radius: 50% 50% 50% 50% / 35% 35% 65% 65%;
+      transform-origin: bottom center;
+      opacity: 0.95;
+    }
+
+    .art-scene .leaf.one { left: 18%; top: 16%; transform: rotate(-28deg); }
+    .art-scene .leaf.two { left: 54%; top: 8%; transform: rotate(18deg); }
+    .art-scene .leaf.three { left: 66%; top: 35%; transform: rotate(24deg); }
+    .art-scene .leaf.four { left: 30%; top: 68%; transform: rotate(-18deg); }
+
+    .fruit {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 22%, #ff845d 0%, #ff4d3b 18%, #e72e35 42%, #cb1d2c 100%);
+      border: 2px solid rgba(17,17,17,0.06);
+      box-shadow: inset -22px -18px 0 rgba(112,13,20,0.14);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .fruit:hover {
+      transform: scale(1.04) rotate(-3deg);
+    }
+
+    .fruit.big { width: 390px; height: 390px; left: 50%; top: 48%; transform: translate(-50%, -50%); }
+    .fruit.mid { width: 230px; height: 230px; left: 16%; top: 30%; }
+    .fruit.mid-2 { width: 250px; height: 250px; right: 10%; top: 18%; }
+    .fruit.small { width: 170px; height: 170px; left: 23%; bottom: 36px; }
+    .fruit.small-2 { width: 170px; height: 170px; right: 18%; bottom: 30px; }
+
+    .fruit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(125deg, rgba(255,255,255,0.1), rgba(255,255,255,0) 48%, rgba(55,7,0,0.08));
+    }
+
+    .fruit::after {
+      content: '';
+      position: absolute;
+      width: 32%;
+      height: 32%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      box-shadow: 0 0 0 14px rgba(255,255,255,0.08);
+    }
+
+    .fruit.big::after {
+      width: 39%;
+      height: 39%;
+      left: 42%;
+      top: 49%;
+    }
+
+    .fruit.mid::after,
+    .fruit.mid-2::after,
+    .fruit.small::after,
+    .fruit.small-2::after {
+      width: 24%;
+      height: 24%;
+    }
+
+    .marquee {
+      margin-top: 16px;
+      background: var(--red);
+      color: #fff;
+      border-top: 2px solid rgba(17,17,17,0.8);
+      border-bottom: 2px solid rgba(17,17,17,0.8);
+      overflow: hidden;
+      white-space: nowrap;
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(22px, 4vw, 40px);
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .marquee-track {
+      display: inline-block;
+      padding: 12px 0 10px;
+      min-width: max-content;
+      animation: marquee 18s linear infinite;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .section {
+      padding: 92px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 30px;
+      border-bottom: 2px solid rgba(17,17,17,0.8);
+      padding-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(40px, 8vw, 82px);
+      letter-spacing: -0.08em;
+      text-transform: uppercase;
+      line-height: 0.9;
+    }
+
+    .section-head p {
+      margin: 0;
+      max-width: 320px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature-card {
+      position: relative;
+      min-height: 300px;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(17,17,17,0.8);
+      padding: 20px 18px;
+      overflow: hidden;
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+      cursor: pointer;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-12px) rotate(-1deg);
+      background: var(--red);
+      color: #fff;
+    }
+
+    .feature-card:nth-child(2):hover { background: var(--green); }
+    .feature-card:nth-child(3):hover { background: var(--blue); }
+
+    .feature-card .idx {
+      display: inline-block;
+      font-family: 'Archivo', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .feature-card h3 {
+      margin: 88px 0 10px;
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(32px, 4vw, 54px);
+      letter-spacing: -0.06em;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .feature-card p {
+      margin: 0;
+      max-width: 220px;
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .feature-card .mini-tomato {
+      position: absolute;
+      right: -30px;
+      bottom: -26px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 22%, #ff8a5d 0%, #ef4a42 18%, #d12532 60%, #ac1d2c 100%);
+      border: 2px solid rgba(17,17,17,0.8);
+      box-shadow: inset -20px -18px rgba(94,12,17,0.12);
+    }
+
+    .feature-card:nth-child(2) .mini-tomato { background: radial-gradient(circle at 35% 22%, #ffd25d 0%, #f1b641 18%, #d68a23 60%, #b57418 100%); }
+    .feature-card:nth-child(3) .mini-tomato { background: radial-gradient(circle at 35% 22%, #83d765 0%, #4aa65e 18%, #2e8251 60%, #1d5a3c 100%); }
+
+    .feature-card .mini-tomato::before {
+      content: '';
+      position: absolute;
+      width: 22px;
+      height: 70px;
+      left: 50%;
+      top: -42px;
+      transform: translateX(-50%) rotate(-14deg);
+      border-radius: 20px;
+      background: linear-gradient(180deg, #3f9d55, #285c38);
+    }
+
+    .brand-band {
+      background: var(--green-deep);
+      color: #f7f0dd;
+      padding: 26px 0;
+      border-top: 2px solid rgba(17,17,17,0.8);
+      border-bottom: 2px solid rgba(17,17,17,0.8);
+    }
+
+    .brand-band-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 34px;
+    }
+
+    .brand-band h3 {
+      margin: 0;
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(38px, 5vw, 68px);
+      letter-spacing: -0.08em;
+      text-transform: uppercase;
+      line-height: 0.9;
+    }
+
+    .brand-band p {
+      margin: 0;
+      max-width: 550px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .pulse-lab {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .lab-dial {
+      position: relative;
+      width: min(100%, 470px);
+      aspect-ratio: 1;
+      margin: 0 auto;
+      border-radius: 50%;
+      border: 2px solid rgba(17,17,17,0.8);
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.02));
+      box-shadow: inset 0 0 0 20px rgba(255,255,255,0.08);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .lab-dial .tomato-core {
+      position: relative;
+      width: 52%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 38% 28%, #ff7d63 0%, #ff5f4d 18%, #e93a37 42%, #c71d2b 100%);
+      box-shadow: inset -16px -16px 0 rgba(101,0,0,0.12);
+      transition: transform 0.2s ease;
+    }
+
+    .lab-dial .tomato-core::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 14px rgba(255,255,255,0.07);
+    }
+
+    .lab-dial .tomato-core::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 120px;
+      left: 50%;
+      top: -50px;
+      transform: translateX(-50%) rotate(12deg);
+      border-radius: 20px;
+      background: linear-gradient(180deg, #3a9b4f, #234d32);
+    }
+
+    .ring {
+      position: absolute;
+      width: 72%;
+      height: 72%;
+      border-radius: 50%;
+      border: 3px solid rgba(17,17,17,0.9);
+      pointer-events: none;
+    }
+
+    .ring.r2 {
+      width: 88%;
+      height: 88%;
+      border-style: dashed;
+      transform: rotate(20deg);
+    }
+
+    .lab-copy h3 {
+      margin: 0 0 18px;
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(30px, 5vw, 70px);
+      letter-spacing: -0.08em;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .lab-copy p {
+      margin: 0 0 26px;
+      max-width: 520px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      border: 2px solid rgba(17,17,17,0.8);
+      padding: 8px 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-weight: 800;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .split-cta {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 26px;
+      flex-wrap: wrap;
+      padding-top: 26px;
+      border-top: 2px solid rgba(17,17,17,0.8);
+    }
+
+    .split-cta .name {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(54px, 9vw, 144px);
+      line-height: 0.75;
+      letter-spacing: -0.08em;
+      text-transform: uppercase;
+      transform: rotate(-5deg);
+    }
+
+    .split-cta .call {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(20px, 3vw, 38px);
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
+
+    .split-cta .call .arrow {
+      display: inline-block;
+      width: 120px;
+      height: 120px;
+      position: relative;
+      transform: rotate(20deg);
+    }
+
+    .split-cta .call .arrow::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 94px;
+      height: 18px;
+      background: var(--red);
+      border-radius: 16px;
+      transform: translateY(-50%);
+    }
+
+    .split-cta .call .arrow::after {
+      content: '';
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      width: 40px;
+      height: 40px;
+      border-top: 15px solid var(--red);
+      border-right: 15px solid var(--red);
+      transform: rotate(45deg) translateY(-50%);
+      border-radius: 6px;
+    }
+
+    footer {
+      border-top: 2px solid rgba(17,17,17,0.8);
+      padding: 20px 0 40px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 800;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      .headline,
+      .brand-band-inner,
+      .pulse-lab { grid-template-columns: 1fr; }
+      .hero-art { height: 500px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 18px; }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner {
+        justify-content: center;
+      }
+      .nav {
+        justify-content: center;
+      }
+      .hero { padding-top: 46px; }
+      .meta-grid { grid-template-columns: 1fr; }
+      .art-scene { width: 100%; }
+      .fruit.big { width: 270px; height: 270px; }
+      .fruit.mid { width: 160px; height: 160px; }
+      .fruit.mid-2 { width: 170px; height: 170px; }
+      .fruit.small, .fruit.small-2 { width: 120px; height: 120px; }
+      .split-cta { display: block; }
+      .split-cta .name { margin-bottom: 16px; }
+      footer { display: block; }
+    }
   </style>
 </head>
 <body>
-  <nav class="nav"><div class="brand"><i class="dot"></i> TOMATO / 研究所</div><div><a href="#varieties">品种档案</a><a href="#lab">进入实验室 ↗</a></div></nav>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <span>Tomato Atelier</span>
+      </div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#story">Story</a>
+        <a href="#varieties">Varieties</a>
+        <a href="#lab">Lab</a>
+        <a href="#shop">Shop</a>
+      </nav>
+      <button class="btn" type="button">Book a taste</button>
+    </div>
+  </header>
+
   <main>
-    <section class="hero"><div><div class="eyebrow">NO. 001 — A VISUAL STUDY OF TOMATOES</div><h1>RED<br><span>MATTER</span></h1><p class="intro">关于番茄的一次视觉考察。它是果实、颜色、夏天，也是一颗正在发生的星球。</p><a class="cta" href="#varieties">开始探索 ↓</a></div><div class="hero-art"><div class="scroll-note">SCROLL TO TASTE</div><div class="poster"><div class="poster-label"><span>2025 / FIELD NOTES</span><span>01—03</span></div><div class="orbit"><i></i></div><div class="tomato" id="heroTomato" title="点击番茄"></div></div></div></section>
-    <div class="marquee"><div>　TOMATOES ARE LITTLE SUNS　✳　番茄是小小的太阳　✳　TOMATOES ARE LITTLE SUNS　✳　</div></div>
-    <section class="section" id="varieties"><div class="section-head"><h2>档案<br>室 / 01</h2><p>点击每张卡片，查看今天的番茄心情。<br>每一种形状都值得被认真观察。</p></div><div class="cards"><article class="card"><span class="card-num">A / 01</span><h3>JUICY<br>多汁</h3><p>一口咬下去，像打开了夏天的水龙头。</p><i class="mini-tomato"></i></article><article class="card"><span class="card-num">B / 02</span><h3>RIPE<br>成熟</h3><p>颜色从橙到红，是时间留下的渐变。</p><i class="mini-tomato"></i></article><article class="card"><span class="card-num">C / 03</span><h3>FRAGRANT<br>香气</h3><p>绿叶、泥土和阳光，藏在果蒂附近。</p><i class="mini-tomato"></i></article></div></section>
-    <section class="section lab" id="lab"><div><div class="section-head"><h2>番茄<br>实验室 / 02</h2></div><p style="font-family:'DM Mono';font-size:12px;line-height:1.6;max-width:420px">移动指针，观察一颗番茄的轨道。我们相信，好的视觉应该像熟透的番茄一样：饱满、直接、带一点不可预测。</p></div><div class="dial" id="dial"><span class="dial-label top">SUN</span><span class="dial-label bottom">SOIL</span><span class="dial-label left">TART</span><span class="dial-label right">SWEET</span><div class="dial-tomato"></div></div></section>
+    <section class="hero" id="story">
+      <div class="container headline">
+        <div>
+          <span class="small-label">No. 001 / Fresh design system</span>
+          <h1>Tomato <span class="accent">Matters</span></h1>
+          <p class="copy">A vibrant visual identity built around juicy color, expressive motion, and the feeling of a summer field captured in a single glance.</p>
+          <div class="cta-row">
+            <button class="btn" type="button">Explore the fruit</button>
+            <button class="btn" type="button" style="background: var(--green); border-color: var(--green); color: #fff;">Shop now</button>
+          </div>
+
+          <div class="meta-grid">
+            <div class="meta-card"><strong>48h</strong> Fresh cut</div>
+            <div class="meta-card"><strong>3x</strong> bright</div>
+            <div class="meta-card"><strong>99%</strong> juicy</div>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-label="Illustrated tomatoes in a blue field">
+          <div class="art-scene" id="scene">
+            <div class="leaf one"></div>
+            <div class="leaf two"></div>
+            <div class="leaf three"></div>
+            <div class="leaf four"></div>
+            <div class="fruit big" data-sway="1"></div>
+            <div class="fruit mid" data-sway="2"></div>
+            <div class="fruit mid-2" data-sway="3"></div>
+            <div class="fruit small" data-sway="4"></div>
+            <div class="fruit small-2" data-sway="5"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-label="Scrolling announcement">
+      <div class="marquee-track">Tomatoes are little suns • Tomato atelier • Organic joy • Glow in season •</div>
+    </div>
+
+    <section class="section container" id="varieties">
+      <div class="section-head">
+        <h2>Varieties / 01</h2>
+        <p>Each tomato carries a different rhythm: bright and sharp, mellow and rich, or explosively sweet.</p>
+      </div>
+
+      <div class="card-grid">
+        <article class="feature-card">
+          <span class="idx">A / 01</span>
+          <h3>Juicy</h3>
+          <p>Velvety skin, clean acidity, and a burst of summer flavor in every bite.</p>
+          <div class="mini-tomato"></div>
+        </article>
+        <article class="feature-card">
+          <span class="idx">B / 02</span>
+          <h3>Ripe</h3>
+          <p>Fully mature, rich in body and color, designed for intense seasonal moments.</p>
+          <div class="mini-tomato"></div>
+        </article>
+        <article class="feature-card">
+          <span class="idx">C / 03</span>
+          <h3>Fragrant</h3>
+          <p>Estate-grown aroma that turns pasta, salads, and plates into warm memories.</p>
+          <div class="mini-tomato"></div>
+        </article>
+      </div>
+    </section>
+
+    <div class="brand-band">
+      <div class="container brand-band-inner">
+        <h3>Built for flavor, built for feeling.</h3>
+        <p>We combine botanical freshness, modern art direction, and craft-driven storytelling to make every tomato appear as both product and inspiration.</p>
+      </div>
+    </div>
+
+    <section class="section container" id="lab">
+      <div class="pulse-lab">
+        <div class="lab-dial" id="labDial">
+          <div class="ring"></div>
+          <div class="ring r2"></div>
+          <div class="tomato-core"></div>
+        </div>
+
+        <div class="lab-copy">
+          <h3>Tomato Lab / 02</h3>
+          <p>At Tomato Atelier we explore the relationship between texture, color, and desire. The fruit becomes a visual signal—fresh, bright, vivid, and subtly theatrical.</p>
+          <div class="tag-list">
+            <span class="tag">Organic</span>
+            <span class="tag">Vibrant</span>
+            <span class="tag">Seasonal</span>
+            <span class="tag">Art direction</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="split-cta" id="shop">
+        <div class="name">Buy</div>
+        <div class="call">
+          <span>Come and</span>
+          <span class="arrow" aria-hidden="true"></span>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer><span>© 2025 TOMATO RESEARCH INSTITUTE</span><span>MADE WITH SUNLIGHT + CSS</span></footer>
+
+  <footer class="container">
+    <span>© Tomato Atelier</span>
+    <span>Freshly crafted / 2025</span>
+  </footer>
+
   <script>
-    const tomato=document.querySelector('#heroTomato');
-    tomato.addEventListener('click',()=>{ tomato.animate([{transform:'rotate(-8deg) scale(1)'},{transform:'rotate(15deg) scale(1.15)'},{transform:'rotate(-8deg) scale(1)'}],{duration:650,easing:'cubic-bezier(.2,.8,.2,1)'}); document.querySelector('.marquee').style.background='#214f2e'; setTimeout(()=>document.querySelector('.marquee').style.background='',900); });
-    const dial=document.querySelector('#dial');
-    dial.addEventListener('pointermove', e=>{ const r=dial.getBoundingClientRect(); const x=e.clientX-r.left-r.width/2, y=e.clientY-r.top-r.height/2; dial.querySelector('.dial-tomato').style.transform=`translate(${x*.12}px,${y*.12}px) scale(1.05)`; });
-    dial.addEventListener('pointerleave',()=>dial.querySelector('.dial-tomato').style.transform='');
+    const fruits = document.querySelectorAll('[data-sway]');
+    const scene = document.getElementById('scene');
+    const dial = document.getElementById('labDial');
+    const core = dial?.querySelector('.tomato-core');
+
+    document.addEventListener('pointermove', (event) => {
+      const x = (event.clientX / window.innerWidth - 0.5) * 18;
+      const y = (event.clientY / window.innerHeight - 0.5) * 14;
+
+      fruits.forEach((fruit, index) => {
+        const drift = Number(fruit.dataset.sway);
+        const offsetX = x * (index + 1) * 0.25 * drift * 0.35;
+        const offsetY = y * (index + 1) * 0.18 * drift * 0.4;
+        fruit.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+      });
+
+      if (scene) {
+        scene.style.transform = `rotate(${x * 0.35 - 2}deg)`;
+      }
+    });
+
+    document.addEventListener('pointerleave', () => {
+      fruits.forEach((fruit) => {
+        fruit.style.transform = '';
+      });
+      if (scene) scene.style.transform = 'rotate(-2deg)';
+    });
+
+    document.querySelectorAll('.feature-card').forEach((card) => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-12px) rotate(-1deg)';
+      });
+    });
+
+    if (dial && core) {
+      dial.addEventListener('pointermove', (e) => {
+        const rect = dial.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width - 0.5;
+        const py = (e.clientY - rect.top) / rect.height - 0.5;
+        core.style.transform = `translate(${px * 18}px, ${py * 14}px) scale(1.06)`;
+      });
+
+      dial.addEventListener('pointerleave', () => {
+        core.style.transform = '';
+      });
+    }
+
+    document.querySelectorAll('.btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btn.animate([
+          { transform: 'scale(1)' },
+          { transform: 'scale(1.04)' },
+          { transform: 'scale(1)' }
+        ], {
+          duration: 220,
+          easing: 'ease-out'
+        });
+      });
+    });
   </script>
 </body>
 </html>
